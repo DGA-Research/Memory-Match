@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylish Memory Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Memory Game</h1>
+    <p>Match the pairs to win. Good luck!</p>
+  </header>
+  
+  <div id="gameContainer">
+    <div id="gameBoard"></div>
+    <aside id="scoreSidebar">
+      <h2>Score</h2>
+      <p>Matches: <span id="matchesCount">0</span></p>
+      <p>Misses: <span id="missesCount">0</span></p>
+    </aside>
+  </div>
+  
+  <!-- Win Modal -->
+  <div id="winModal" class="modal">
+    <div class="modal-content">
+      <h2>Congratulations!</h2>
+      <p>You have matched all the cards!</p>
+      <button id="modalRestartBtn">Restart Game</button>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

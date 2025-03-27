@@ -1,0 +1,217 @@
+/* Overall body styling with responsive scrolling */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    position: relative;
+    overflow-y: auto; /* Allows vertical scrolling if content exceeds viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Animated grid overlay for a futuristic vibe */
+  body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+    animation: moveGrid 20s linear infinite;
+    z-index: 0;
+  }
+  
+  @keyframes moveGrid {
+    from { transform: translate(0, 0); }
+    to { transform: translate(50px, 50px); }
+  }
+  
+  /* Header styling */
+  header {
+    text-align: center;
+    margin: 20px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    font-size: 1.8rem;
+  }
+  
+  /* Container for board and sidebar with responsive sizing */
+  #gameContainer {
+    display: flex;
+    flex-wrap: wrap;  /* Allows wrapping if screen is narrow */
+    gap: 20px;
+    width: 95%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Game board grid with 4 cards per row */
+  #gameBoard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    flex: 2;
+  }
+  
+  /* Score sidebar adjustments: reduced overall size and enhanced text */
+  #scoreSidebar {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+  }
+  
+  #scoreSidebar h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  
+  #scoreSidebar p {
+    font-size: 20px;
+    margin: 8px 0;
+  }
+  
+  /* Card styling with increased size */
+  .card {
+    width: 180px;
+    height: 180px;
+    perspective: 1000px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .card.flip .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+  }
+  
+  /* Card front (face image) is hidden by default (rotated 180°) */
+  .card-front {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  
+  /* Card back is visible by default */
+  .card-back {
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 36px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  }
+  
+  /* Win modal overlay styling */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+  
+  .modal-content {
+    background: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.8s;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+    color: #28a745;
+    font-size: 2rem;
+  }
+  
+  .modal-content p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+  }
+  
+  .modal-content button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .modal-content button:hover {
+    background: #218838;
+  }
+  
+  /* Restart button styling */
+  #restartBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+  }
+  
